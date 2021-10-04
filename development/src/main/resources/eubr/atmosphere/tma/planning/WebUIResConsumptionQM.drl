@@ -40,26 +40,26 @@ end
 
 // ########### NEW ##########
 
-rule "Score validation - TeaStore Scale up again"
-    when
-        $score: TrustworthinessScore ( resourceConsumptionScore.score > 0.10, podCount < 3 )
-    then
-    System.out.println("TeaStore Scale up");
-        Action action = new Action(1, "scale", 9, 1);
-        action.addConfiguration(new Configuration(1, "metadata.namespace", "default"));
-        action.addConfiguration(new Configuration(2, "metadata.name", "teastore-webui"));
-        action.addConfiguration(new Configuration(3, "spec.replicas", "3"));
-        AdaptationManager.performAdaptation( action, AdaptationManager.obtainMetricData($score) );
-end
+// rule "Score validation - TeaStore Scale up again"
+//     when
+//         $score: TrustworthinessScore ( resourceConsumptionScore.score > 0.10, podCount < 3 )
+//     then
+//     System.out.println("TeaStore Scale up");
+//         Action action = new Action(1, "scale", 9, 1);
+//         action.addConfiguration(new Configuration(1, "metadata.namespace", "default"));
+//         action.addConfiguration(new Configuration(2, "metadata.name", "teastore-webui"));
+//         action.addConfiguration(new Configuration(3, "spec.replicas", "3"));
+//         AdaptationManager.performAdaptation( action, AdaptationManager.obtainMetricData($score) );
+// end
 
-rule "Score validation - TeaStore Scale down again"
-    when
-        $score: TrustworthinessScore ( resourceConsumptionScore.score < 0.07, podCount > 2 )
-    then
-	System.out.println("TeaStore Scale down");
-        Action action = new Action(1, "scale", 9, 1);
-        action.addConfiguration(new Configuration(1, "metadata.namespace", "default"));
-        action.addConfiguration(new Configuration(2, "metadata.name", "teastore-webui"));
-        action.addConfiguration(new Configuration(3, "spec.replicas", "2"));
-        AdaptationManager.performAdaptation( action, AdaptationManager.obtainMetricData($score) );
-end
+// rule "Score validation - TeaStore Scale down again"
+//     when
+//         $score: TrustworthinessScore ( resourceConsumptionScore.score < 0.07, podCount > 2 )
+//     then
+// 	System.out.println("TeaStore Scale down");
+//         Action action = new Action(1, "scale", 9, 1);
+//         action.addConfiguration(new Configuration(1, "metadata.namespace", "default"));
+//         action.addConfiguration(new Configuration(2, "metadata.name", "teastore-webui"));
+//         action.addConfiguration(new Configuration(3, "spec.replicas", "2"));
+//         AdaptationManager.performAdaptation( action, AdaptationManager.obtainMetricData($score) );
+// end
